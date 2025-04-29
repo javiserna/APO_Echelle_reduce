@@ -5,7 +5,8 @@ This repository contains a workflow and scripts for reducing echelle spectra fro
 ## Requirements
 
 To use this repository, you will need:
-- Pyraf and IRAF installed
+
+- PyRAF and IRAF installed
 - Science observations of your targets
 - Bias frames
 - Flat fields with open/red filter
@@ -19,32 +20,74 @@ To use this repository, you will need:
 2. **Activate** your Anaconda environment that has **PyRAF** installed.
 
 3. **Initialize IRAF** within this directory by running:
+
    ```bash
    mkiraf
    ```
+
    This will create a folder named `uparm`.
 
 4. **Move your observational data** (for example, the files from the `observations` folder) into:
+
    ```bash
    raw/DATE/
    ```
+
    where `DATE` corresponds to the date of the observations.
 
 5. **Return to the root** of your working directory and run the reduction script:
+
    ```bash
    python echelleReduction_py3.py DATE
    ```
 
 6. **Wait a few minutes**. After completion, your reduced spectra will be available in:
+
    ```bash
    reduced/DATE/
    ```
+
    as files with the `.ec.fits` extension.
 
-## Plotting
+---
 
-To visualize a particular order of the reduced spectrum, a plotting script will be shared soon.  
-For now, this basic reduction process should allow you to obtain your extracted spectra.
+## Plotting Calibrated Orders
+
+To visualize a specific spectral order from a reduced, wavelength-calibrated spectrum, you can use the script:
+
+```bash
+plot_spec.py
+```
+
+### How to use it
+
+1. Open the script and **modify line 7** to indicate the FITS file you want to plot. For example:
+
+   ```python
+   filename = 'CVSO_315.0005.ec.fits'
+   ```
+
+2. On **line 8**, set the order you wish to plot:
+
+   ```python
+   orden = 40  # replace with any order between 1 and 115
+   ```
+
+3. Run the script from the terminal:
+
+   ```bash
+   python plot_spec.py
+   ```
+
+This script only works with `*.ec.fits` files that are **already wavelength calibrated**, as produced by this reduction workflow.
+
+### Where to find the wavelength coverage per order
+
+For a detailed table of the spectral orders and their wavelength ranges, refer to the ARCES instrument documentation:
+
+👉 [https://www.apo.nmsu.edu/arc35m/Instruments/ARCES/](https://www.apo.nmsu.edu/arc35m/Instruments/ARCES/)
+
+---
 
 ## Caveats
 

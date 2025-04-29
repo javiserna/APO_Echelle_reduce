@@ -5,6 +5,7 @@ This repository contains a workflow and scripts for reducing echelle spectra fro
 ## Requirements
 
 To use this repository, you will need:
+- Pyraf and IRAF installed
 - Science observations of your targets
 - Bias frames
 - Flat fields with open/red filter

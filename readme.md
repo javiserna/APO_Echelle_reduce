@@ -109,4 +109,3 @@ This can be easily imported into any plotting software for further custom analys
 
 - **Dark correction** is not yet implemented — this feature is currently in development.
 - **Continuum flattening** across different orders is not fully automated. Some basic tools are included, but they require user tuning through trial and error.
-- **Spectral order visualization tools** are under active development.

@@ -7,7 +7,7 @@ Luego activa iraf en este directorio
 ejecutando: mkiraf
 con esto se creara un folder llamado uparm.
 
-Luego mueve todas las observaciones al folder raw/DATE
+Luego mueve todas las observaciones como ilustracion o test (mueve el contenido del folder observations) al folder raw/DATE
 y regresa al home del directorio de trabajo y ejecuta "python echelleReduction_py3.py DATE"
 
 Espera unos minutos y en el directorio reduced/DATE encontraras los archivos con extension *.ec.fits los cuales son tus espectros reducidos.

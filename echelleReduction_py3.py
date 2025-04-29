@@ -399,7 +399,8 @@ iraf.dispcor(input='@targets_extracted',output='@targets_extracted',flux=no,
 iraf.dispcor(input='@arcs_extracted',output='z//@arcs_extracted',flux=no,
              linearize=no,log=no,verbose=yes,samedisp=no)
 
-
+print('ALL DONE! Yay! (=^.^=)  ')
+print('Now performing a continuum fitting but it needs trial and error to get appropriate parameters to get it work')
 
 ###
 ###  Continuum fitting and removal different orders for different parts...

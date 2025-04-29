@@ -87,6 +87,22 @@ For a detailed table of the spectral orders and their wavelength ranges, refer t
 
 👉 [https://www.apo.nmsu.edu/arc35m/Instruments/ARCES/](https://www.apo.nmsu.edu/arc35m/Instruments/ARCES/)
 
+### Saving All Orders to a TXT File
+
+When you run `plot_spec.py`, in addition to plotting a specific order, the script will also **save a plain-text file** with the flux and wavelength values for **all orders** in the same `.ec.fits` file. The output file will have the same name, but ending in `_all_orders.txt`, for example:
+
+```
+CVSO_315.0005.ec_all_orders.txt
+```
+
+Each line contains:
+
+```
+# Order  Wavelength[Angstroms]  Flux[adu]
+```
+
+This can be easily imported into any plotting software for further custom analysis.
+
 ---
 
 ## Caveats

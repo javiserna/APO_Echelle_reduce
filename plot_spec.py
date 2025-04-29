@@ -43,8 +43,13 @@ spec_info = match.group(1).split()
 
 crval = float(spec_info[3])  # primer valor de lambda
 cdelt = float(spec_info[4])  # incremento de lambda
-#npix = int(float(spec_info[5]))     # número de pixeles
-npix = data.shape[1]
+npix_from_data = data.shape[1] # número de pixeles
+npix_from_header = int(float(spec_info[5])) # número de pixeles
+
+if npix_from_data != npix_from_header:
+    print(f"Advertencia: el header dice {npix_from_header} pixeles pero la imagen tiene {npix_from_data}")
+    
+npix = npix_from_data
 
 print(f"Orden {orden}: crval = {crval}, cdelt = {cdelt}, npix = {npix}")
 

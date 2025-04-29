@@ -8,8 +8,12 @@ ejecutando: mkiraf
 con esto se creara un folder llamado uparm.
 
 Luego mueve todas las observaciones al folder raw/DATE
-y regresa al home del directorio y ejecuta "python echelleReduction_py3.py DATE"
+y regresa al home del directorio de trabajo y ejecuta "python echelleReduction_py3.py DATE"
 
 Espera unos minutos y en el directorio reduced/DATE encontraras los archivos con extension *.ec.fits los cuales son tus espectros reducidos.
 
 Para graficar cualquier orden del espectro usar el codigo... luego lo compartire aqui por ahora esto es lo esencial.
+
+
+Caveats:
+Este script no corrige por darks, es algo en lo que estoy trabajando.

@@ -17,3 +17,5 @@ Para graficar cualquier orden del espectro usar el codigo... luego lo compartire
 
 Caveats:
 Este script no corrige por darks, es algo en lo que estoy trabajando.
+Tampoco aplana el continuo para los diferentes ordenes en los espectros reducidos, en principio tiene unas herramientas para hacerlo pero requiere ensayo y error de parte del usuario para que funcione
+Estoy trabajando en la visualizacion de los ordenes de los espectros

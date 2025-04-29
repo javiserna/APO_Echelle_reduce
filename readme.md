@@ -1,0 +1,15 @@
+Esta receta y script son el workflow para reducir espectros Echelle de APO.
+
+Para usar este repo, debes tener las observaciones de tus objetos, bias, flat filtro abierto o red, flat filtro azul y lampara.
+
+Primero descarga el repositorio en tu directorio de trabajo, descomprime si es necesario y dentro del folder, activa el entorno anaconda que tenga instalado pyraf.
+Luego activa iraf en este directorio
+ejecutando: mkiraf
+con esto se creara un folder llamado uparm.
+
+Luego mueve todas las observaciones al folder raw/DATE
+y regresa al home del directorio y ejecuta "python echelleReduction_py3.py DATE"
+
+Espera unos minutos y en el directorio reduced/DATE encontraras los archivos con extension *.ec.fits los cuales son tus espectros reducidos.
+
+Para graficar cualquier orden del espectro usar el codigo... luego lo compartire aqui por ahora esto es lo esencial.

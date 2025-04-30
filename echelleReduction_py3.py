@@ -83,7 +83,7 @@ iraf.hselect('*.fits','$I','IMAGETYP == "flat"',Stdout='allflats')
 iraf.hselect('@allflats','$I','FILTER == "Blue"',Stdout='flat_blue')
 iraf.hselect('@allflats','$I','FILTER == "Open"',Stdout='flat_red')
 iraf.hselect('*.fits','$I','IMAGETYP == "zero"',Stdout='biases')
-#iraf.hselect('*.fits','$I','IMAGETYP == "dark"',Stdout='darks')
+iraf.hselect('*.fits','$I','IMAGETYP == "dark"',Stdout='darks') #if you use dark exposures please uncomment this line
 iraf.hselect('*.fits','$I','IMAGETYP == "comp"',Stdout='arcs')
 iraf.hselect('*.fits','$I','IMAGETYP == "object"',Stdout='targets')
 outfile=open('objflat','w')
@@ -115,10 +115,10 @@ iraf.imdelete('bias_fid',verify=no)
 iraf.zerocombine('@biases',output='bias_fid',combine='median',
                  reject='none',ccdtype='',process=no,delete=no,
                  scale='none')
-#iraf.imdelete('dark_fid',verify=no)
-#iraf.darkcombine('@darks',output='dark_fid',combine='average',
-#                 reject='avsigclip',ccdtype='',process=no,delete=no,
-#                 scale='none')
+iraf.imdelete('dark_fid',verify=no) #if you use dark exposures please uncomment this line
+iraf.darkcombine('@darks',output='dark_fid',combine='average',
+                 reject='avsigclip',ccdtype='',process=no,delete=no,
+                 scale='none') #if you use dark exposures please uncomment these lines
 
 
 # CALIBRATE ARCS, OBJECT AND FLAT FIELD SPECTRA
@@ -128,8 +128,11 @@ iraf.zerocombine('@biases',output='bias_fid',combine='median',
 trimsec='[200:1850,1:2048]'
 print('Calibrating object images and flats (bias, and trimming)...')
 iraf.ccdproc('@objflat',output='',ccdtype='object',trimsec=trimsec,
-             zerocor=yes,darkcor=no,flatcor=no,trim=yes,
+             zerocor=yes,darkcor=yes,dark='dark_fid',flatcor=no,trim=yes,
              fixpix=no,overscan=no,zero='bias_fid',interactive=no)
+#iraf.ccdproc('@objflat',output='',ccdtype='object',trimsec=trimsec,
+#             zerocor=yes,darkcor=no,flatcor=no,trim=yes,
+#             fixpix=no,overscan=no,zero='bias_fid',interactive=no) #if you use dark correction please keep it commented
 print('Calibrating object images and flats (bias, and trimming)...')
 iraf.ccdproc('@flat_red',output='',ccdtype='flat',trimsec=trimsec,
              zerocor=yes,darkcor=no,flatcor=no,trim=yes,

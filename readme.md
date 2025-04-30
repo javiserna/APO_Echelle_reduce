@@ -40,19 +40,26 @@ To use this repository, you will need:
    ```bash
    unzip filter_redflat.zip
    ```
-6. **Give permissions** to dcr file: 
+6. **Give permissions** to dcr file (Linux): 
 
    ```bash
    chmod +x dcr
    ```
-
-7. **Return to the root** of your working directory and run the reduction script:
+   **For Mac OS X** you will need to uncompress dcr.tar and inside that folder execute make command
+   ```bash
+   untar dcr.tar
+   cd dcr
+   make
+   ```
+   Once dcr is recompiled, please replace the dcr executable and dcr.par with the new ones into the repo folder
+   
+8. **Return to the root** of your working directory and run the reduction script:
 
    ```bash
    python echelleReduction_py3.py DATE
    ```
 
-8. **Wait a few minutes**. After completion, your reduced spectra will be available in:
+9. **Wait a few minutes**. After completion, your reduced spectra will be available in:
 
    ```bash
    reduced/DATE/

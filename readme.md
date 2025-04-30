@@ -35,31 +35,34 @@ To use this repository, you will need:
 
    where `DATE` corresponds to the date of the observations.
 
-5. **Uncompress** filter_redflat
-
+5. **Unpack** filter reference flat
+   
    ```bash
    unzip filter_redflat.zip
    ```
-6. **Give permissions** to dcr file (Linux): 
-
+7. **Compile or Enable** DCR for Cosmic Ray Removal 
+   Linux:
+   Grant execution permissions to the precompiled DCR binary:
    ```bash
    chmod +x dcr
    ```
-   **For Mac OS X** you will need to uncompress dcr.tar and inside that folder execute make command
+   MacOS:
+   If you are using a Mac (especially Apple Silicon), compile DCR from source
    ```bash
-   untar dcr.tar
+   tar -xvf dcr.tar
    cd dcr
    make
    ```
-   Once dcr is recompiled, please replace the dcr executable and dcr.par with the new ones into the repo folder
-   
-8. **Return to the root** of your working directory and run the reduction script:
+   after successfully compilation:
+   Replace the original dcr executable and dcr.par file in the repository directory with the new ones you just compiled.
+      
+9. **Return to the root** of your working directory and run the reduction script:
 
    ```bash
    python echelleReduction_py3.py DATE
    ```
 
-9. **Wait a few minutes**. After completion, your reduced spectra will be available in:
+10. **Wait a few minutes**. After completion, your reduced spectra will be available in:
 
    ```bash
    reduced/DATE/

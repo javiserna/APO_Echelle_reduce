@@ -12,6 +12,7 @@ To use this repository, you will need:
 - Flat fields with open/red filter
 - Flat fields with blue filter
 - Arc lamp exposures
+- Dark exposures
 
 ## Instructions
 

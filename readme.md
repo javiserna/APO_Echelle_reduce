@@ -35,7 +35,7 @@ To use this repository, you will need:
 
    where `DATE` corresponds to the date of the observations.
 
-5. **Uncompress filter_redflat
+5. **Uncompress** filter_redflat
 
    ```bash
    unzip filter_redflat.zip

@@ -40,20 +40,26 @@ To use this repository, you will need:
    ```bash
    unzip filter_redflat.zip
    ```
-7. **Compile or Enable** DCR for Cosmic Ray Removal 
+7. **Compile or Enable** DCR for Cosmic Ray Removal
+   
    Linux:
+   
    Grant execution permissions to the precompiled DCR binary:
    ```bash
    chmod +x dcr
    ```
+   
    MacOS:
+   
    If you are using a Mac (especially Apple Silicon), compile DCR from source
    ```bash
    tar -xvf dcr.tar
    cd dcr
    make
    ```
+   
    after successfully compilation:
+   
    Replace the original dcr executable and dcr.par file in the repository directory with the new ones you just compiled.
       
 9. **Return to the root** of your working directory and run the reduction script:

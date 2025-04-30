@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.io import fits
+import re
 
 # === CONFIGURACIÓN ===
 filename = 'CVSO_315.0005.ec.fits'
@@ -22,43 +23,28 @@ if orden < 1 or orden > ny:
 
 # === EXTRAER LA INFORMACIÓN DE CALIBRACIÓN DEL HEADER ===
 
-# Buscar la entrada correspondiente en WAT2_
+# Concatenar todas las entradas WAT2_
 wat2 = ''
 i = 1
 while f'WAT2_{i:03}' in header:
     wat2 += header[f'WAT2_{i:03}']
     i += 1
 
-# Buscar el string que corresponde a nuestro orden
-import re
+# === GRAFICAR EL ORDEN SELECCIONADO ===
 match = re.search(rf'spec{orden} = "(.*?)"', wat2)
 if not match:
-    raise ValueError(f"No encontré la calibración para el orden {orden} en WAT2.")
+    raise ValueError(f"Orden {orden}: calibración no encontrada.")
 
-spec_info = match.group(1).split()
-
-# Ahora, del spec_info extraemos:
-# [specnum, beam, dtype, crval, cdelt, npix, pix0, w0, w1, ...] 
-# (los campos w0, w1, etc., son para no-linealidades si existieran)
-
-crval = float(spec_info[3])  # primer valor de lambda
-cdelt = float(spec_info[4])  # incremento de lambda
-npix_from_data = data.shape[1] # número de pixeles
-npix_from_header = int(float(spec_info[5])) # número de pixeles
-
-if npix_from_data != npix_from_header:
-    print(f"Advertencia: el header dice {npix_from_header} pixeles pero la imagen tiene {npix_from_data}")
-    
-npix = npix_from_data
+spec_info = re.findall(r"[-+]?\d*\.\d+|\d+", match.group(1))
+crval = float(spec_info[3])
+cdelt = float(spec_info[4])
+npix = data.shape[1]
 
 print(f"Orden {orden}: crval = {crval}, cdelt = {cdelt}, npix = {npix}")
 
-# === CONSTRUIR EL VECTOR DE LONGITUD DE ONDA ===
 x = np.arange(npix)
-wavelength = crval + (x) * cdelt
-
-# === GRAFICAR EL ORDEN ===
-flux = data[orden-1, :]
+wavelength = crval + x * cdelt
+flux = data[orden - 1, :]
 
 plt.figure(figsize=(10,6))
 plt.plot(wavelength, flux, lw=1)
@@ -68,3 +54,24 @@ plt.title(f'Orden {orden} de {filename}')
 plt.grid()
 plt.show()
 
+# === GUARDAR TODOS LOS ÓRDENES EN UN SOLO ARCHIVO TXT ===
+
+output_file = filename.replace('.fits', '_all_orders.txt')
+with open(output_file, 'w') as f:
+    f.write("# Orden  Lambda[Angstroms]  Flujo[adu]\n")
+    for ord_idx in range(1, ny + 1):
+        match = re.search(rf'spec{ord_idx} = "(.*?)"', wat2)
+        if not match:
+            print(f"Orden {ord_idx}: calibración no encontrada. Saltando.")
+            continue
+        spec_info = re.findall(r"[-+]?\d*\.\d+|\d+", match.group(1))
+        crval = float(spec_info[3])
+        cdelt = float(spec_info[4])
+        wavelength = crval + np.arange(npix) * cdelt
+        flux = data[ord_idx - 1, :]
+
+        for wl, fl in zip(wavelength, flux):
+            f.write(f"{ord_idx:03d}  {wl:.4f}  {fl:.4f}\n")
+        f.write("\n")  # Separador entre órdenes
+
+print(f"Archivo guardado como {output_file}")

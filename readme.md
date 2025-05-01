@@ -135,4 +135,5 @@ This can be easily imported into any plotting software for further custom analys
 
 ## Caveats
 
-- **Continuum flattening** across different orders is not fully automated. Some basic tools are included, but they require user tuning through trial and error.
+- **Continuum flattening** Some basic tools are included, but they require user tuning through trial and error for the polynomial order.
+For instance, aesop repository allow us to fit and remove the blaze function of each spectral order and merge all on 1D spectra. Please see aesop_fitting.py.

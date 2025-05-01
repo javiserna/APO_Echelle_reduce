@@ -133,7 +133,11 @@ This can be easily imported into any plotting software for further custom analys
 
 ---
 
-## Caveats
+**Notes on Continuum Flattening**
 
-- **Continuum flattening** Some basic tools are included, but they require user tuning through trial and error for the polynomial order.
-For instance, aesop repository allow us to fit and remove the blaze function of each spectral order and merge all into a 1D normalized spectrum. Please see aesop_fitting.py.
+This workflow includes basic tools for continuum fitting, but they require user tuning on the polynomial order. A related script aesop_fitting.py can:
+
+- Fit and remove the blaze function per order to normalize spectra
+- Merge orders into a single 1D spectrum
+
+⚠️ Note: This process currently rejects the first and last 100 pixels in each order to mitigate edge artifacts. While this is practical, it's not always optimal. Users are encouraged to carefully inspect the continuum and adjust parameters as needed for high-precision science.

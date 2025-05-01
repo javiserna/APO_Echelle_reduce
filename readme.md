@@ -136,4 +136,4 @@ This can be easily imported into any plotting software for further custom analys
 ## Caveats
 
 - **Continuum flattening** Some basic tools are included, but they require user tuning through trial and error for the polynomial order.
-For instance, aesop repository allow us to fit and remove the blaze function of each spectral order and merge all on 1D spectra. Please see aesop_fitting.py.
+For instance, aesop repository allow us to fit and remove the blaze function of each spectral order and merge all into a 1D normalized spectrum. Please see aesop_fitting.py.
